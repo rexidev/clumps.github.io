@@ -38,6 +38,7 @@ input[type="text"] {
     border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    margin-top: 20px;
 }
 
 .button:hover {
@@ -98,4 +99,30 @@ input[type="text"] {
 
 .navButton:hover {
     background-color: #333;
+}
+
+.balanceContainer {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
+}
+
+.friendItem {
+    display: flex;
+    align-items: center;
+    margin: 10px 0;
+}
+
+.friendName, .friendBalance {
+    margin-left: 10px;
+}
+
+.friendBalance {
+    margin-left: auto;
 }
