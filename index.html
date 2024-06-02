@@ -7,142 +7,38 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="fallingStars"></div>
-    <div id="nicknamePage" class="centered">
-        <div class="avatar" id="avatar"></div>
-        <div class="inputField">
-            <input type="text" id="nickname" maxlength="10" placeholder="Enter your nickname">
+    <div class="container">
+        <header class="header">
+            <span>Clumps</span>
+        </header>
+        <div class="profile">
+            <img src="img/avatar.png" alt="Avatar" class="avatar">
+            <div class="nickname">jacepol2</div>
+            <div class="balance">₿ 1,965.800</div>
         </div>
-        <button class="button" onclick="startGame()">Начать игру</button>
-    </div>
-    <div id="farmingPage" class="centered">
-        <div id="avatarDisplay" class="avatar"></div>
-        <div id="nicknameDisplay"></div>
-        <div class="balanceContainer">
-            <img src="img/dollar.png" alt="Dollar Icon" class="icon">
-            <div id="balance">0</div>
+        <div class="game-section">
+            <div class="game-card">
+                <div class="game-image">
+                    <img src="img/drop_game.png" alt="Drop Game">
+                </div>
+                <div class="game-info">
+                    <div class="game-title">Drop game</div>
+                    <button class="play-button">Play</button>
+                </div>
+            </div>
+            <div class="farming-status">
+                <div class="farming-info">
+                    <span>Farming</span>
+                    <span class="farming-balance">₿ 10.347</span>
+                </div>
+                <div class="farming-time">06h 33m</div>
+            </div>
         </div>
-        <button class="button" id="farmingButton" onclick="startFarming()">Начать фарминг</button>
+        <footer class="footer">
+            <div class="nav-button">Home</div>
+            <div class="nav-button">Tasks</div>
+            <div class="nav-button">Frens</div>
+        </footer>
     </div>
-    <div id="friendsPage" class="centered">
-        <div>Ваши друзья:</div>
-        <div id="friendsList"></div>
-        <button class="button" onclick="copyReferralLink()">Скопировать ссылку для рефералки</button>
-    </div>
-    <div class="nav">
-        <div class="navButton" onclick="showPage('farmingPage')">Home</div>
-        <div class="navButton" onclick="showPage('friendsPage')">Friends</div>
-    </div>
-    <script>
-        let balance = 0;
-        let farmingInterval;
-        let friends = [];
-
-        function startGame() {
-            const nickname = document.getElementById('nickname').value;
-            if (nickname.length >= 3 && nickname.length <= 10) {
-                document.getElementById('nicknamePage').style.display = 'none';
-                document.getElementById('farmingPage').style.display = 'flex';
-                document.getElementById('nicknameDisplay').innerText = nickname;
-                document.getElementById('avatarDisplay').style.backgroundImage = document.getElementById('avatar').style.backgroundImage;
-                checkReferral();
-            } else {
-                alert('Введите корректный никнейм (3-10 символов).');
-            }
-        }
-
-        function startFarming() {
-            document.getElementById('farmingButton').disabled = true;
-            document.getElementById('farmingButton').style.backgroundColor = 'grey';
-            farmingInterval = setInterval(() => {
-                balance += 1;
-                document.getElementById('balance').innerText = balance;
-            }, 1000);
-            setTimeout(() => {
-                clearInterval(farmingInterval);
-                document.getElementById('farmingButton').disabled = false;
-                document.getElementById('farmingButton').innerText = 'Собрать награду';
-                document.getElementById('farmingButton').style.backgroundColor = 'green';
-                document.getElementById('farmingButton').onclick = collectReward;
-            }, 8 * 60 * 60 * 1000); // 8 часов
-        }
-
-        function collectReward() {
-            balance += 2000;
-            document.getElementById('balance').innerText = balance;
-            document.getElementById('farmingButton').innerText = 'Начать фарминг';
-            document.getElementById('farmingButton').style.backgroundColor = 'white';
-            document.getElementById('farmingButton').onclick = startFarming;
-        }
-
-        function showPage(page) {
-            document.getElementById('nicknamePage').style.display = 'none';
-            document.getElementById('farmingPage').style.display = 'none';
-            document.getElementById('friendsPage').style.display = 'none';
-            document.getElementById(page).style.display = 'flex';
-            if (page === 'friendsPage') {
-                updateFriendsList();
-            }
-        }
-
-        function copyReferralLink() {
-            const nickname = document.getElementById('nicknameDisplay').innerText;
-            const referralLink = `https://t.me/casualrealBot/app?startapp=ref_${nickname}`;
-            navigator.clipboard.writeText(referralLink).then(() => {
-                alert('Ссылка для рефералки скопирована!');
-            });
-        }
-
-        function checkReferral() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const ref = urlParams.get('ref');
-            if (ref) {
-                const refUser = friends.find(friend => friend.nickname === ref);
-                if (refUser) {
-                    refUser.balance += 1000;
-                } else {
-                    friends.push({ nickname: ref, avatar: '', balance: 1000 });
-                }
-            }
-        }
-
-        function updateFriendsList() {
-            const friendsList = document.getElementById('friendsList');
-            friendsList.innerHTML = '';
-            friends.forEach(friend => {
-                const friendItem = document.createElement('div');
-                friendItem.className = 'friendItem';
-                friendItem.innerHTML = `
-                    <div class="avatar" style="background-image: url('${friend.avatar || 'img/default_avatar.png'}');"></div>
-                    <div class="friendName">${friend.nickname}</div>
-                    <div class="friendBalance">${friend.balance}</div>
-                `;
-                friendsList.appendChild(friendItem);
-            });
-        }
-
-        // Avatar selection (simulated for this example)
-        document.getElementById('avatar').onclick = () => {
-            const avatarUrl = prompt('Введите URL изображения для аватара:');
-            if (avatarUrl) {
-                document.getElementById('avatar').style.backgroundImage = `url(${avatarUrl})`;
-            }
-        };
-
-        // Create falling stars animation
-        function createStars() {
-            for (let i = 0; i < 100; i++) {
-                const star = document.createElement('div');
-                star.className = 'fallingStar';
-                star.style.left = `${Math.random() * 100}%`;
-                star.style.animationDuration = `${Math.random() * 5 + 2}s`;
-                star.style.animationDelay = `${Math.random() * 3}s`;
-                star.style.width = `${Math.random() * 3 + 1}px`;
-                star.style.height = star.style.width;
-                document.querySelector('.fallingStars').appendChild(star);
-            }
-        }
-        createStars();
-    </script>
 </body>
 </html>
