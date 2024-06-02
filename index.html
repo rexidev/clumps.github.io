@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Page</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="fallingStars"></div>
+    <div id="nicknamePage" class="centered">
+        <div class="avatar" id="avatar"></div>
+        <div class="inputField">
+            <input type="text" id="nickname" maxlength="10" placeholder="Enter your nickname">
+        </div>
+        <button class="button" onclick="startGame()">Начать игру</button>
+    </div>
+    <div id="farmingPage" class="centered">
+        <div id="avatarDisplay" class="avatar"></div>
+        <div id="nicknameDisplay"></div>
+        <div id="balance">Баланс: 0 долларов</div>
+        <button class="button" id="farmingButton" onclick="startFarming()">Начать фарминг</button>
+    </div>
+    <div id="friendsPage" class="centered">
+        <div>Ваши друзья:</div>
+        <div id="friendsList"></div>
+        <button class="button" onclick="copyReferralLink()">Скопировать ссылку для рефералки</button>
+    </div>
+    <div class="nav">
+        <div class="navButton" onclick="showPage('farmingPage')">Home</div>
+        <div class="navButton" onclick="showPage('friendsPage')">Friends</div>
+    </div>
+    <script>
+        let balance = 0;
+        let farmingInterval;
+
+        function startGame() {
+            const nickname = document.getElementById('nickname').value;
+            if (nickname.length >= 3 && nickname.length <= 10) {
+                document.getElementById('nicknamePage').style.display = 'none';
+                document.getElementById('farmingPage').style.display = 'flex';
+                document.getElementById('nicknameDisplay').innerText = nickname;
+                document.getElementById('avatarDisplay').style.backgroundImage = document.getElementById('avatar').style.backgroundImage;
+            } else {
+                alert('Введите корректный никнейм (3-10 символов).');
+            }
+        }
+
+        function startFarming() {
+            document.getElementById('farmingButton').disabled = true;
+            farmingInterval = setInterval(() => {
+                balance += 1;
+                document.getElementById('balance').innerText = `Баланс: ${balance} долларов`;
+            }, 1000);
+            setTimeout(() => {
+                clearInterval(farmingInterval);
+                document.getElementById('farmingButton').disabled = false;
+                document.getElementById('farmingButton').innerText = 'Начать фарминг';
+                document.getElementById('farmingButton').style.backgroundColor = 'green';
+                document.getElementById('farmingButton').onclick = collectReward;
+            }, 8 * 60 * 60 * 1000); // 8 часов
+        }
+
+        function collectReward() {
+            balance += 6000;
+            document.getElementById('balance').innerText = `Баланс: ${balance} долларов`;
+            document.getElementById('farmingButton').innerText = 'Начать фарминг';
+            document.getElementById('farmingButton').style.backgroundColor = 'white';
+            document.getElementById('farmingButton').onclick = startFarming;
+        }
+
+        function showPage(page) {
+            document.getElementById('nicknamePage').style.display = 'none';
+            document.getElementById('farmingPage').style.display = 'none';
+            document.getElementById('friendsPage').style.display = 'none';
+            document.getElementById(page).style.display = 'flex';
+        }
+
+        function copyReferralLink() {
+            const referralLink = `https://example.com/referral?user=${document.getElementById('nicknameDisplay').innerText}`;
+            navigator.clipboard.writeText(referralLink).then(() => {
+                alert('Ссылка для рефералки скопирована!');
+            });
+        }
+
+        // Avatar selection (simulated for this example)
+        document.getElementById('avatar').onclick = () => {
+            const avatarUrl = prompt('Введите URL изображения для аватара:');
+            if (avatarUrl) {
+                document.getElementById('avatar').style.backgroundImage = `url(${avatarUrl})`;
+            }
+        };
+
+        // Create falling stars animation
+        function createStars() {
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'fallingStar';
+                star.style.left = `${Math.random() * 100}%`;
+                star.style.animationDuration = `${Math.random() * 3 + 1}s`;
+                star.style.animationDelay = `${Math.random() * 2}s`;
+                document.querySelector('.fallingStars').appendChild(star);
+            }
+        }
+        createStars();
+    </script>
+</body>
+</html>
