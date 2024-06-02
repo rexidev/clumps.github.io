@@ -67,10 +67,8 @@ input[type="text"] {
 
 .fallingStar {
     position: absolute;
-    width: 2px;
-    height: 100px;
-    background: linear-gradient(white, rgba(255, 255, 255, 0));
-    animation: falling 3s infinite linear;
+    background: radial-gradient(circle, white 0%, rgba(255, 255, 255, 0) 70%);
+    animation: falling 5s infinite linear;
 }
 
 @keyframes falling {
