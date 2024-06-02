@@ -19,7 +19,7 @@
         <div id="avatarDisplay" class="avatar"></div>
         <div id="nicknameDisplay"></div>
         <div class="balanceContainer">
-            <img src="dollar.png" alt="Dollar Icon" class="icon">
+            <img src="img/dollar.png" alt="Dollar Icon" class="icon">
             <div id="balance">0</div>
         </div>
         <button class="button" id="farmingButton" onclick="startFarming()">Начать фарминг</button>
@@ -113,7 +113,7 @@
                 const friendItem = document.createElement('div');
                 friendItem.className = 'friendItem';
                 friendItem.innerHTML = `
-                    <div class="avatar" style="background-image: url('${friend.avatar || 'default_avatar.png'}');"></div>
+                    <div class="avatar" style="background-image: url('${friend.avatar || 'img/default_avatar.png'}');"></div>
                     <div class="friendName">${friend.nickname}</div>
                     <div class="friendBalance">${friend.balance}</div>
                 `;
