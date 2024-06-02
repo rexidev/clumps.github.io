@@ -1,0 +1,88 @@
+body {
+    background-color: black;
+    color: white;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+#nicknameForm, #farmingPage, #friendsPage {
+    display: none;
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.inputField {
+    margin: 20px 0;
+}
+
+input[type="text"] {
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.button {
+    background-color: white;
+    color: black;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.avatar {
+    width: 100px;
+    height: 100px;
+    background-color: grey;
+    border-radius: 50%;
+    margin-bottom: 20px;
+    cursor: pointer;
+}
+
+.fallingStars {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+}
+
+.fallingStar {
+    position: absolute;
+    width: 2px;
+    height: 100px;
+    background: white;
+    animation: falling 3s infinite linear;
+}
+
+@keyframes falling {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100vh);
+    }
+}
+
+.nav {
+    position: fixed;
+    bottom: 10px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+.navButton {
+    color: white;
+    cursor: pointer;
+}
