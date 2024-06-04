@@ -1,38 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YesCoin</title>
+    <title>Космическая Игра</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <div class="stars"></div>
     <div class="container">
         <div class="circle">
-            <div class="progress-text">
-                <div class="score">2.517</div>
-                <img src="yescoin-logo.png" alt="YesCoin Logo">
-                <div>3500 / 3500</div>
-            </div>
+            <input type="file" id="upload" accept="image/*" onchange="loadFile(event)">
+            <img id="avatar" src="" alt="Avatar">
         </div>
+        <div class="triangle">
+            <input type="text" id="nickname" placeholder="Введите ник (4-10 символов)">
+        </div>
+        <div class="start-btn">Начать историю</div>
     </div>
-    <div class="footer-menu">
-        <div>
-            <img src="profile-icon.png" alt="Profile">
-            <div>Profile</div>
-        </div>
-        <div>
-            <img src="earn-icon.png" alt="Earn">
-            <div>Earn</div>
-        </div>
-        <div>
-            <img src="friends-icon.png" alt="Friends">
-            <div>Friends</div>
-        </div>
-        <div>
-            <img src="boosts-icon.png" alt="Boosts">
-            <div>Boosts</div>
-        </div>
-    </div>
+    <script src="script.js"></script>
 </body>
 </html>
