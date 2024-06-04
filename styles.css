@@ -15,6 +15,12 @@ body, html {
     height: 100%;
     background: url('stars.gif') repeat;
     z-index: 1;
+    animation: moveStars 50s linear infinite;
+}
+
+@keyframes moveStars {
+    from { background-position: 0 0; }
+    to { background-position: 10000px 10000px; }
 }
 
 .container {
@@ -30,8 +36,8 @@ body, html {
 .circle {
     background-color: grey;
     border-radius: 50%;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -54,23 +60,16 @@ body, html {
     display: none;
 }
 
-.triangle {
-    width: 0;
-    height: 0;
-    border-left: 50px solid transparent;
-    border-right: 50px solid transparent;
-    border-bottom: 100px solid grey;
-    position: relative;
+.nickname-container {
+    background-color: grey;
+    padding: 10px;
+    border-radius: 5px;
     margin-bottom: 20px;
 }
 
-.triangle input {
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 80px;
-    padding: 5px;
+.nickname-container input {
+    width: 200px;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     text-align: center;
