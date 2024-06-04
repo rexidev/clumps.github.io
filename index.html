@@ -10,14 +10,30 @@
     <div class="stars"></div>
     <div class="container">
         <div class="circle">
-            <input type="file" id="upload" accept="image/*" onchange="loadFile(event)">
+            <input type="file" id="upload" accept="image/*">
             <img id="avatar" src="" alt="Avatar">
         </div>
-        <div class="triangle">
+        <div class="nickname-container">
             <input type="text" id="nickname" placeholder="Введите ник (4-10 символов)">
         </div>
-        <div class="start-btn">Начать историю</div>
+        <div class="start-btn" onclick="startStory()">Начать историю</div>
     </div>
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('upload').addEventListener('change', function(event) {
+            const avatar = document.getElementById('avatar');
+            avatar.src = URL.createObjectURL(event.target.files[0]);
+            avatar.style.display = 'block';
+        });
+
+        function startStory() {
+            const nickname = document.getElementById('nickname').value;
+            if (nickname.length >= 4 && nickname.length <= 10 && /\d{2}/.test(nickname)) {
+                alert('История началась!');
+                // Добавьте здесь логику для начала игры.
+            } else {
+                alert('Ник должен содержать от 4 до 10 символов и включать как минимум две цифры.');
+            }
+        }
+    </script>
 </body>
 </html>
