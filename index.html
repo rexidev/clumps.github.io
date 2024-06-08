@@ -1,39 +1,35 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Космическая Игра</title>
+    <title>Registration Page</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="stars"></div>
     <div class="container">
-        <div class="circle">
-            <input type="file" id="upload" accept="image/*">
-            <img id="avatar" src="" alt="Avatar">
+        <div class="form-container">
+            <h1>Register</h1>
+            <form>
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="input-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="input-group">
+                    <label for="confirm-password">Confirm Password</label>
+                    <input type="password" id="confirm-password" name="confirm-password" required>
+                </div>
+                <button type="submit" class="btn">Register</button>
+            </form>
         </div>
-        <div class="nickname-container">
-            <input type="text" id="nickname" placeholder="Введите ник (4-10 символов)">
-        </div>
-        <div class="start-btn" onclick="startStory()">Начать историю</div>
     </div>
-    <script>
-        document.getElementById('upload').addEventListener('change', function(event) {
-            const avatar = document.getElementById('avatar');
-            avatar.src = URL.createObjectURL(event.target.files[0]);
-            avatar.style.display = 'block';
-        });
-
-        function startStory() {
-            const nickname = document.getElementById('nickname').value;
-            if (nickname.length >= 4 && nickname.length <= 10 && /\d{2}/.test(nickname)) {
-                alert('История началась!');
-                // Добавьте здесь логику для начала игры.
-            } else {
-                alert('Ник должен содержать от 4 до 10 символов и включать как минимум две цифры.');
-            }
-        }
-    </script>
 </body>
 </html>
