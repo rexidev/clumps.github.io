@@ -1,46 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hamster Coin Style Web App</title>
+    <title>Регистрация</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <div class="container">
-            <h1>Hamster Coin</h1>
-            <p>The cutest coin in the crypto world</p>
+    <div class="container">
+        <div id="registration" class="registration-form">
+            <h1>Регистрация</h1>
+            <form id="registerForm">
+                <input type="text" id="username" name="username" placeholder="Имя пользователя" required>
+                <input type="email" id="email" name="email" placeholder="Электронная почта" required>
+                <input type="password" id="password" name="password" placeholder="Пароль" required>
+                <button type="submit">Зарегистрироваться</button>
+            </form>
         </div>
-    </header>
-    <main>
-        <div class="container">
-            <section class="introduction">
-                <h2>Welcome to Hamster Coin</h2>
-                <p>Join the community of the cutest coin in the crypto world and be a part of something amazing.</p>
-                <button class="cta-button">Get Started</button>
-            </section>
-            <section class="features">
-                <h2>Features</h2>
-                <div class="feature-item">
-                    <h3>Fast Transactions</h3>
-                    <p>Experience lightning-fast transactions with low fees.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Secure Wallet</h3>
-                    <p>Your assets are safe and secure with our state-of-the-art wallet.</p>
-                </div>
-                <div class="feature-item">
-                    <h3>Community Driven</h3>
-                    <p>Our strong community is the backbone of Hamster Coin.</p>
-                </div>
-            </section>
+        <div id="underConstruction" class="under-construction" style="display: none;">
+            <h1>В Разработке</h1>
         </div>
-    </main>
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Hamster Coin. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('registration').style.display = 'none';
+            document.getElementById('underConstruction').style.display = 'flex';
+        });
+    </script>
 </body>
 </html>
