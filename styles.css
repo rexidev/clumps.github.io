@@ -3,97 +3,65 @@ body {
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
-}
-
-header {
-    background-color: #ffcc00;
-    color: #333;
-    padding: 40px 0;
-    text-align: center;
-}
-
-header h1 {
-    font-size: 48px;
-    margin: 0;
-}
-
-header p {
-    font-size: 18px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 .container {
     width: 90%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 20px 0;
-}
-
-.introduction {
+    max-width: 500px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    padding: 20px;
     text-align: center;
-    margin: 40px 0;
 }
 
-.introduction h2 {
+.registration-form h1 {
     font-size: 36px;
     color: #333;
 }
 
-.introduction p {
-    font-size: 18px;
-    color: #666;
+.registration-form form {
+    display: flex;
+    flex-direction: column;
 }
 
-.cta-button {
-    background-color: #ffcc00;
-    color: #333;
-    border: none;
-    padding: 15px 30px;
-    font-size: 18px;
-    cursor: pointer;
+.registration-form input {
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 16px;
+}
+
+.registration-form button {
+    padding: 15px;
+    margin-top: 10px;
+    background-color: #ffcc00;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    color: #333;
+    cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.cta-button:hover {
+.registration-form button:hover {
     background-color: #ffb700;
 }
 
-.features {
+.under-construction {
     display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
 }
 
-.feature-item {
-    background-color: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    padding: 20px;
-    width: 30%;
-    margin-bottom: 20px;
-    text-align: center;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-}
-
-.feature-item h3 {
-    font-size: 24px;
+.under-construction h1 {
+    font-size: 48px;
     color: #333;
-    margin-bottom: 10px;
-}
-
-.feature-item p {
-    font-size: 16px;
-    color: #666;
-}
-
-footer {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 20px 0;
-}
-
-footer p {
-    margin: 0;
-    font-size: 14px;
 }
